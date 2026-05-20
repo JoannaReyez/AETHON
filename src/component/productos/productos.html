@@ -1,0 +1,237 @@
+<!-- NAVBAR -->
+<app-navbar></app-navbar>
+
+<!-- Login Modal -->
+@if (showLoginModal) {
+  <app-login-modal 
+    (close)="closeLoginModal()" 
+    (login)="handleLogin($event)"
+  ></app-login-modal>
+}
+
+<!-- PRODUCTOS HERO -->
+<section class="products-hero">
+  <div class="hero-bg-shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+  </div>
+  <div class="container">
+    <div class="products-hero-content">
+      <div class="section-tag">
+        <i class="bi bi-box-seam"></i>
+        <span>Nuestros Productos</span>
+      </div>
+      <h1>Productos <span class="gradient-text">Premium</span></h1>
+      <p>Descubre nuestra colección de productos diseñados para superar tus expectativas.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FILTROS -->
+<section class="filters-section">
+  <div class="container">
+    <div class="filters-wrapper">
+      <div class="filter-tabs">
+        <button
+          *ngFor="let category of categories"
+          class="filter-btn"
+          [class.active]="activeCategory === category.id"
+          (click)="filterByCategory(category.id)">
+          <i [class]="'bi ' + category.icon"></i>
+          {{ category.name }}
+        </button>
+      </div>
+      <div class="search-box">
+        <i class="bi bi-search"></i>
+        <input
+          type="text"
+          placeholder="Buscar productos..."
+          [(ngModel)]="searchTerm"
+          (input)="onSearch()">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTOS GRID -->
+<section class="products-section">
+  <div class="container">
+    <div class="products-grid">
+      <div class="product-card" *ngFor="let product of filteredProducts; let i = index" [style.animation-delay]="i * 50 + 'ms'">
+        <div class="product-badge" *ngIf="product.badge">{{ product.badge }}</div>
+        <div class="product-image">
+          <div class="image-placeholder">
+            <i class="bi bi-image"></i>
+            <span>{{ product.imageText }}</span>
+          </div>
+          <div class="product-actions">
+            <button class="action-btn" (click)="quickView(product)" title="Vista rápida">
+              <i class="bi bi-eye"></i>
+            </button>
+            <button class="action-btn" (click)="addToCart(product)" title="Agregar al carrito">
+              <i class="bi bi-cart-plus"></i>
+            </button>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-category">{{ product.category }}</div>
+          <h3>{{ product.name }}</h3>
+          <p>{{ product.description }}</p>
+          <div class="product-price">
+            <span class="current-price">{{ product.price }}</span>
+            <span class="old-price" *ngIf="product.oldPrice">{{ product.oldPrice }}</span>
+          </div>
+          <div class="product-rating" *ngIf="product.rating">
+            <i class="bi bi-star-fill" *ngFor="let star of getRatingStars(product.rating)"></i>
+            <i class="bi bi-star" *ngFor="let star of getEmptyStars(product.rating)"></i>
+            <span>({{ product.reviews }})</span>
+          </div>
+          <button class="btn-add-cart" (click)="addToCart(product)">
+            <i class="bi bi-cart-check"></i>
+            Agregar al carrito
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="empty-state" *ngIf="filteredProducts.length === 0">
+      <i class="bi bi-search"></i>
+      <h3>No se encontraron productos</h3>
+      <p>Intenta con otros términos de búsqueda o categorías</p>
+      <button class="btn-reset" (click)="resetFilters()">
+        <i class="bi bi-arrow-repeat"></i>
+        Resetear filtros
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- MODAL QUICK VIEW -->
+<div class="modal-overlay" *ngIf="selectedProduct" (click)="closeModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <button class="modal-close" (click)="closeModal()">
+      <i class="bi bi-x-lg"></i>
+    </button>
+    <div class="modal-grid">
+      <div class="modal-image">
+        <div class="image-placeholder large">
+          <i class="bi bi-image"></i>
+          <span>{{ selectedProduct.imageText }}</span>
+        </div>
+      </div>
+      <div class="modal-info">
+        <div class="product-category">{{ selectedProduct.category }}</div>
+        <h2>{{ selectedProduct.name }}</h2>
+        <div class="product-price">
+          <span class="current-price">{{ selectedProduct.price }}</span>
+          <span class="old-price" *ngIf="selectedProduct.oldPrice">{{ selectedProduct.oldPrice }}</span>
+        </div>
+        <div class="product-rating" *ngIf="selectedProduct.rating">
+          <i class="bi bi-star-fill" *ngFor="let star of getRatingStars(selectedProduct.rating)"></i>
+          <i class="bi bi-star" *ngFor="let star of getEmptyStars(selectedProduct.rating)"></i>
+          <span>({{ selectedProduct.reviews }} reseñas)</span>
+        </div>
+        <p class="product-description">{{ selectedProduct.fullDescription || selectedProduct.description }}</p>
+        <div class="product-features" *ngIf="selectedProduct.features">
+          <h4>Características:</h4>
+          <ul>
+            <li *ngFor="let feature of selectedProduct.features">
+              <i class="bi bi-check-circle-fill"></i>
+              {{ feature }}
+            </li>
+          </ul>
+        </div>
+        <button class="btn-add-cart large" (click)="addToCart(selectedProduct); closeModal()">
+          <i class="bi bi-cart-check"></i>
+          Agregar al carrito
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CARRITO SIDEBAR -->
+<div class="cart-overlay" [class.open]="cartOpen" (click)="closeCart()"></div>
+<div class="cart-sidebar" [class.open]="cartOpen">
+  <div class="cart-header">
+    <h3><i class="bi bi-bag"></i> Mi Carrito <span *ngIf="cartCount > 0">({{ cartCount }})</span></h3>
+    <button class="cart-close" (click)="closeCart()">
+      <i class="bi bi-x-lg"></i>
+    </button>
+  </div>
+
+  <!-- Carrito vacío -->
+  <div class="cart-empty" *ngIf="cartItems.length === 0">
+    <i class="bi bi-bag-x"></i>
+    <p>Tu carrito está vacío</p>
+    <span>Agrega productos para continuar</span>
+  </div>
+
+  <!-- Lista de productos -->
+  <div class="cart-items" *ngIf="cartItems.length > 0">
+    <div class="cart-item" *ngFor="let item of cartItems; let i = index">
+      <div class="cart-item-img">
+        <i class="bi bi-image"></i>
+      </div>
+      <div class="cart-item-info">
+        <h4>{{ item.product.name }}</h4>
+        <span class="cart-item-price">{{ item.product.price }}</span>
+        <div class="cart-item-qty">
+          <button (click)="decreaseQty(i)"><i class="bi bi-dash"></i></button>
+          <span>{{ item.quantity }}</span>
+          <button (click)="increaseQty(i)"><i class="bi bi-plus"></i></button>
+        </div>
+      </div>
+      <button class="cart-item-remove" (click)="removeFromCart(i)">
+        <i class="bi bi-trash3"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Footer carrito -->
+  <div class="cart-footer" *ngIf="cartItems.length > 0">
+    <div class="cart-subtotal">
+      <span>Subtotal</span>
+      <strong>${{ cartTotal }}</strong>
+    </div>
+    <button class="btn-checkout" (click)="checkout()">
+      <i class="bi bi-whatsapp"></i>
+      Pedir por WhatsApp
+    </button>
+    <button class="btn-clear" (click)="clearCart()">
+      <i class="bi bi-trash3"></i>
+      Vaciar carrito
+    </button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast-notification" [class.show]="showToast">
+  <i class="bi bi-check-circle-fill"></i>
+  <span>{{ toastMessage }}</span>
+</div>
+
+<!-- FOOTER -->
+<app-footer></app-footer>
+
+<!-- BOTÓN FLOTANTE DINÁMICO: CARRITO CON ANIMACIÓN O WHATSAPP -->
+<a 
+  *ngIf="cartCount === 0" 
+  href="https://wa.me/521234567890" 
+  target="_blank" 
+  class="whatsapp-float" 
+  [class.show]="isScrolled">
+  <i class="bi bi-whatsapp"></i>
+  <span class="wsp-tooltip">¡Escríbenos!</span>
+</a>
+
+<button 
+  *ngIf="cartCount > 0" 
+  class="cart-float-btn" 
+  [class.bounce]="cartBounce" 
+  (click)="toggleCart()"
+  title="Ver carrito">
+  <i class="bi bi-bag"></i>
+  <span class="cart-float-count">{{ cartCount }}</span>
+</button>

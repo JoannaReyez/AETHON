@@ -1,0 +1,31 @@
+<nav class="navbar" [class.scrolled]="isScrolled">
+  <div class="nav-container">
+    <div class="nav-logo">
+      <div class="logo-placeholder">
+        <i class="bi bi-grid-fill"></i>
+        <span>Tu Logo Aquí</span>
+      </div>
+    </div>
+    <ul class="nav-links" [class.open]="menuOpen">
+      <li><a routerLink="/web" (click)="closeMenu()">Inicio</a></li>
+      <li><a routerLink="/productos" (click)="closeMenu()">Productos</a></li>
+      <li *ngIf="store.isLoggedIn()">
+        <button class="nav-icon-btn" type="button" (click)="handleLogout()" aria-label="Cerrar sesión" title="Cerrar sesión">
+          <i class="bi bi-box-arrow-right"></i>
+        </button>
+      </li>
+      <li *ngIf="!store.isLoggedIn()"><a class="nav-cta" (click)="openLoginModal()">Ingresar</a></li>
+    </ul>
+    <button class="hamburger" (click)="toggleMenu()" [class.active]="menuOpen">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Login Modal -->
+@if (showLoginModal) {
+  <app-login-modal 
+    (close)="closeLoginModal()" 
+    (login)="handleLogin($event)"
+  ></app-login-modal>
+}

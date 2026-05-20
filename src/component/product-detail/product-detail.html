@@ -1,0 +1,103 @@
+<section class="product-detail-page" *ngIf="product; else noProduct">
+  <section class="detail-hero">
+    <div class="detail-hero-bg"></div>
+
+    <div class="detail-grid">
+      <div class="detail-image">
+        <div class="image-frame">
+          <div class="image-placeholder large">
+            <i class="bi bi-image"></i>
+            <span>{{ product.imageText }}</span>
+          </div>
+
+          <div class="image-badge" *ngIf="product.badge || product.category">
+            <span>{{ product.badge || 'Selección destacada' }}</span>
+            <strong>{{ product.category }}</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="detail-info">
+        <div class="section-tag"><i class="bi bi-box-seam"></i> Detalle del producto</div>
+
+        <div class="detail-heading">
+          <h1>{{ product.name }}</h1>
+          <p class="detail-category">{{ product.category }} · {{ product.status }}</p>
+        </div>
+
+        <div class="detail-badges">
+          <span class="info-chip">{{ product.status }}</span>
+          <span class="info-chip" *ngIf="product.badge">{{ product.badge }}</span>
+          <span class="info-chip">Diseño limpio</span>
+        </div>
+
+        <div class="detail-prices">
+          <span class="current-price">{{ product.price }}</span>
+          <span class="old-price" *ngIf="product.oldPrice">{{ product.oldPrice }}</span>
+        </div>
+
+        <p class="detail-description">{{ product.fullDescription }}</p>
+
+        <div class="detail-metrics">
+          <div class="metric-card">
+            <span>Valoración</span>
+            <strong>{{ product.rating }} ★</strong>
+          </div>
+          <div class="metric-card">
+            <span>Reseñas</span>
+            <strong>{{ product.reviews }}</strong>
+          </div>
+          <div class="metric-card">
+            <span>Categoría</span>
+            <strong>{{ product.category }}</strong>
+          </div>
+        </div>
+
+        <div class="action-row">
+          <button class="btn-primary" type="button" (click)="store.addToCart(product)">Agregar al carrito</button>
+          <button class="btn-secondary" type="button" (click)="toggleFavorite()">
+            <i class="bi" [class.bi-heart-fill]="store.isFavorite(product.id)" [class.bi-heart]="!store.isFavorite(product.id)"></i>
+            {{ store.isFavorite(product.id) ? 'Quitar favoritos' : 'Agregar favoritos' }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="related-section">
+    <div class="section-header">
+      <div>
+        <h2>Productos relacionados</h2>
+        <p>Explora opciones parecidas con una vista más compacta y limpia.</p>
+      </div>
+      <a routerLink="/usuario/tienda" class="link-button">Volver a tienda</a>
+    </div>
+
+    <div class="related-grid">
+      <article class="related-card" *ngFor="let related of relatedProducts">
+        <div class="related-image">
+          <div class="image-placeholder">
+            <i class="bi bi-image"></i>
+          </div>
+        </div>
+        <div class="related-copy">
+          <div class="related-topline">
+            <h4>{{ related.name }}</h4>
+            <span>{{ related.price }}</span>
+          </div>
+          <p>{{ related.description }}</p>
+          <a routerLink="/usuario/producto/{{ related.id }}" class="btn-small">Ver</a>
+        </div>
+      </article>
+    </div>
+  </section>
+</section>
+
+<ng-template #noProduct>
+  <div class="empty-state centered">
+    <i class="bi bi-exclamation-circle"></i>
+    <h3>Producto no encontrado</h3>
+    <p>Regresa a la tienda para elegir otro producto.</p>
+    <a routerLink="/usuario/tienda" class="btn-primary">Volver a tienda</a>
+  </div>
+</ng-template>

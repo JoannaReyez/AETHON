@@ -1,0 +1,273 @@
+<!-- NAVBAR -->
+<app-navbar></app-navbar>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg-shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-text" [class.visible]="heroVisible">
+      <div class="hero-badge">
+        <i class="bi bi-stars"></i>
+        <span>Presencia Digital Profesional</span>
+      </div>
+      <h1 class="hero-title">
+        <span class="gradient-text">Tu Negocio</span>
+        <br>en el siguiente nivel
+      </h1>
+      <p class="hero-slogan">✦ Tu Slogan Aquí ✦</p>
+      <p class="hero-desc">Describe aquí tu negocio en pocas palabras. Conecta con más clientes, genera confianza y haz crecer tu marca con presencia profesional en internet.</p>
+      <div class="hero-actions">
+        <a href="https://wa.me/521234567890" target="_blank" class="btn-whatsapp">
+          <i class="bi bi-whatsapp"></i>
+          Escríbenos por WhatsApp
+        </a>
+        <a href="#services" class="btn-outline">
+          Ver Servicios <i class="bi bi-arrow-down-right"></i>
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><strong>+200</strong><span>Clientes Felices</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><strong>5★</strong><span>Valoración</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><strong>10+</strong><span>Años de Exp.</span></div>
+      </div>
+    </div>
+    <div class="hero-visual" [class.visible]="heroVisible">
+      <div class="mockup-card main-card">
+        <div class="mockup-header">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <div class="mockup-url">tunegocio.com</div>
+        </div>
+        <div class="mockup-img-placeholder">
+          <i class="bi bi-image"></i>
+          <span>[ Tu Imagen Aquí ]</span>
+        </div>
+        <div class="mockup-body">
+          <div class="mockup-line w80"></div>
+          <div class="mockup-line w60"></div>
+          <div class="mockup-line w90"></div>
+        </div>
+      </div>
+      <div class="floating-badge badge-clients">
+        <i class="bi bi-people-fill"></i>
+        <div><strong>+200</strong><small>Visitas hoy</small></div>
+      </div>
+      <div class="floating-badge badge-rating">
+        <i class="bi bi-star-fill"></i>
+        <div><strong>5.0</strong><small>Valoración</small></div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <span>Desliza</span>
+    <i class="bi bi-chevron-compact-down"></i>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about section" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-image-wrap">
+        <div class="about-img-placeholder">
+          <i class="bi bi-camera"></i>
+          <span>[ Tu Foto de Negocio Aquí ]</span>
+        </div>
+        <div class="about-img-accent"></div>
+        <div class="about-badge-experience">
+          <strong>10+</strong>
+          <span>Años sirviendo</span>
+        </div>
+      </div>
+      <div class="about-text">
+        <div class="section-tag"><i class="bi bi-info-circle"></i> Sobre Nosotros</div>
+        <h2>¿Quiénes somos y <span class="highlight">qué nos hace únicos?</span></h2>
+        <p class="about-intro">Somos un negocio apasionado por lo que hacemos. Describe aquí tu historia, misión y lo que te diferencia de la competencia.</p>
+        <p class="about-body">Aquí puedes hablar de tus valores, tu equipo, tu trayectoria o por qué los clientes eligen tu negocio. Este texto es completamente editable para adaptarse a tu marca.</p>
+        <div class="about-features">
+          <div class="feature-item">
+            <div class="feature-icon"><i class="bi bi-check2-circle"></i></div>
+            <div>
+              <strong>Calidad garantizada</strong>
+              <p>Descripción breve de tu promesa de calidad.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i class="bi bi-heart-fill"></i></div>
+            <div>
+              <strong>Atención personalizada</strong>
+              <p>Cada cliente merece lo mejor de nosotros.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i class="bi bi-award-fill"></i></div>
+            <div>
+              <strong>Experiencia comprobada</strong>
+              <p>Años de trayectoria respaldan nuestro trabajo.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services section" id="services">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag"><i class="bi bi-grid"></i> Lo que ofrecemos</div>
+      <h2>Nuestros <span class="highlight">Servicios</span></h2>
+      <p>Agrega aquí tus servicios, productos o promociones principales. Cada tarjeta es completamente personalizable.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card featured" *ngFor="let service of services; let i = index" [style.animation-delay]="i * 100 + 'ms'">
+        <div class="service-icon-wrap">
+          <i class="bi" [class]="service.icon"></i>
+        </div>
+        <div class="service-badge" *ngIf="service.badge">{{ service.badge }}</div>
+        <h3>{{ service.name }}</h3>
+        <p>{{ service.desc }}</p>
+        <div class="service-price">{{ service.price }}</div>
+        <a href="#contact" class="service-btn">
+          Más info <i class="bi bi-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+    <div class="promo-banner">
+      <div class="promo-left">
+        <i class="bi bi-lightning-charge-fill"></i>
+        <div>
+          <strong>[ Tu Promoción Especial Aquí ]</strong>
+          <span>Agrega aquí tus descuentos o paquetes especiales del mes</span>
+        </div>
+      </div>
+      <a href="https://wa.me/521234567890" target="_blank" class="promo-btn">
+        <i class="bi bi-whatsapp"></i> Aprovechar Oferta
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery section" id="gallery">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag"><i class="bi bi-images"></i> Nuestro trabajo</div>
+      <h2>Galería <span class="highlight">& Showcase</span></h2>
+      <p>Muestra aquí fotos de tu negocio, productos o trabajos realizados. Las imágenes generan confianza.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item tall">
+        <div class="gallery-placeholder">
+          <i class="bi bi-image"></i>
+          <span>[ Tu Foto Destacada ]</span>
+        </div>
+        <div class="gallery-overlay">
+          <i class="bi bi-zoom-in"></i>
+          <span>Ver foto</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-placeholder">
+          <i class="bi bi-image"></i>
+          <span>[ Foto 2 ]</span>
+        </div>
+        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i><span>Ver foto</span></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-placeholder">
+          <i class="bi bi-image"></i>
+          <span>[ Foto 3 ]</span>
+        </div>
+        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i><span>Ver foto</span></div>
+      </div>
+      <div class="gallery-item wide">
+        <div class="gallery-placeholder">
+          <i class="bi bi-image"></i>
+          <span>[ Tu Menú / Catálogo Aquí ]</span>
+        </div>
+        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i><span>Ver foto</span></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-placeholder">
+          <i class="bi bi-image"></i>
+          <span>[ Foto 5 ]</span>
+        </div>
+        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i><span>Ver foto</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials section" id="testimonials">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag"><i class="bi bi-chat-quote"></i> Lo que dicen</div>
+      <h2>Testimonios <span class="highlight">Reales</span></h2>
+      <p>La opinión de tus clientes es el mejor argumento de venta. Aquí van sus comentarios.</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card" *ngFor="let t of testimonials">
+        <div class="testimonial-quote"><i class="bi bi-quote"></i></div>
+        <p class="testimonial-text">"{{ t.text }}"</p>
+        <div class="testimonial-stars">
+          <i class="bi bi-star-fill" *ngFor="let s of [1,2,3,4,5]"></i>
+        </div>
+        <div class="testimonial-author">
+          <div class="author-avatar">
+            <i class="bi bi-person-fill"></i>
+          </div>
+          <div>
+            <strong>{{ t.name }}</strong>
+            <span>{{ t.role }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="cta-shapes">
+    <div class="cta-shape-1"></div>
+    <div class="cta-shape-2"></div>
+  </div>
+  <div class="container">
+    <div class="cta-content">
+      <div class="cta-icon"><i class="bi bi-rocket-takeoff-fill"></i></div>
+      <h2>¿Listo para llevar tu negocio<br><span>al siguiente nivel?</span></h2>
+      <p>No esperes más. Contáctanos hoy y descubre cómo podemos ayudarte a crecer. Tu éxito es nuestra misión.</p>
+      <div class="cta-actions">
+        <a href="https://wa.me/521234567890" target="_blank" class="btn-cta-main">
+          <i class="bi bi-whatsapp"></i>
+          Contáctanos Ahora
+        </a>
+        <a href="tel:+521234567890" class="btn-cta-secondary">
+          <i class="bi bi-telephone-fill"></i>
+          Llamar Ahora
+        </a>
+      </div>
+      <div class="cta-guarantee">
+        <i class="bi bi-shield-check"></i>
+        <span>Respuesta en menos de 24 horas · Sin compromisos</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<app-footer></app-footer>
+
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/521234567890" target="_blank" class="whatsapp-float" [class.show]="isScrolled">
+  <i class="bi bi-whatsapp"></i>
+  <span class="wsp-tooltip">¡Escríbenos!</span>
+</a>
