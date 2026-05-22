@@ -1,8 +1,8 @@
-import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, HostListener } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { LoginModal } from '../../modales/login-modal/login-modal';
 import { StoreService } from '../../app/store.service';
+import { LoginModal } from '../../modales/login-modal/login-modal';
 
 @Component({
   selector: 'app-navbar',
@@ -12,10 +12,14 @@ import { StoreService } from '../../app/store.service';
   styleUrl: './navbar.scss',
 })
 export class Navbar {
-  constructor(private router: Router, public store: StoreService) {}
   isScrolled = false;
   menuOpen = false;
   showLoginModal = false;
+
+  constructor(
+    private router: Router,
+    public store: StoreService,
+  ) {}
 
   @HostListener('window:scroll', [])
   onWindowScroll(): void {
@@ -31,7 +35,7 @@ export class Navbar {
   }
 
   openLoginModal(): void {
-    this.closeMenu(); // Cierra el menú móvil si está abierto
+    this.closeMenu();
     this.showLoginModal = true;
   }
 
@@ -39,12 +43,24 @@ export class Navbar {
     this.showLoginModal = false;
   }
 
-  handleLogin(credentials: { email: string; password: string }): void {
-    const loggedIn = this.store.login(credentials.email, credentials.password);
-    if (!loggedIn) {
+  handleLogin(credentials: { email: string; password: string; role?: string }): void {
+    const result = this.store.login(credentials.email, credentials.password);
+    if (!result.success) {
       return;
     }
+
     this.closeMenu();
+
+    if (result.role === 'admin') {
+      this.router.navigate(['/admin/dashboard']);
+      return;
+    }
+
+    if (result.role === 'employee') {
+      this.router.navigate(['/empleado/dashboard-empleado']);
+      return;
+    }
+
     this.router.navigate(['/usuario/dashboard']);
   }
 
@@ -53,4 +69,5 @@ export class Navbar {
     this.closeMenu();
     this.router.navigate(['/web']);
   }
+
 }

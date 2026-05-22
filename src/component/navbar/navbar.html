@@ -1,31 +1,184 @@
-<nav class="navbar" [class.scrolled]="isScrolled">
-  <div class="nav-container">
-    <div class="nav-logo">
-      <div class="logo-placeholder">
-        <i class="bi bi-grid-fill"></i>
-        <span>Tu Logo Aquí</span>
+<nav class="navbar" [class.scrolled]="isScrolled" [class.menu-open]="menuOpen">
+  <div class="navbar__glow"></div>
+  <div class="navbar__grid"></div>
+
+  <div class="navbar__particles" aria-hidden="true">
+    <span class="navbar__particle"></span>
+    <span class="navbar__particle"></span>
+    <span class="navbar__particle"></span>
+    <span class="navbar__particle"></span>
+    <span class="navbar__particle"></span>
+    <span class="navbar__particle"></span>
+    <span class="navbar__particle"></span>
+    <span class="navbar__particle"></span>
+    <span class="navbar__particle"></span>
+    <span class="navbar__particle"></span>
+  </div>
+
+  <div class="navbar__shell">
+    <a
+      class="navbar__brand"
+      routerLink="/web"
+      (click)="closeMenu()"
+      aria-label="Ir al inicio de AETHON INNOVATION"
+    >
+      <span class="navbar__logo-wrap">
+        <img class="navbar__logo" src="/logo1.jpeg" alt="AETHON INNOVATION logo" />
+      </span>
+
+      <span class="navbar__brand-copy">
+        <span class="navbar__brand-name">AETHON INNOVATION</span>
+        <span class="navbar__brand-tag">
+          <span class="navbar__tag-dot"></span>
+          AI Systems - Web Innovation
+        </span>
+      </span>
+    </a>
+
+    <div class="navbar__desktop">
+      <ul class="navbar__links" aria-label="Navegacion principal">
+        <li>
+          <a
+            class="navbar__link"
+            routerLink="/web"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            (click)="closeMenu()"
+          >
+            <span>Inicio</span>
+          </a>
+        </li>
+        <li>
+          <a
+            class="navbar__link"
+            routerLink="/productos"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            (click)="closeMenu()"
+          >
+            <span>Productos</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="navbar__actions">
+        <ng-container *ngIf="store.isLoggedIn(); else loggedOutDesktopAction">
+          <button
+            class="navbar__action navbar__action--ghost"
+            type="button"
+            (click)="handleLogout()"
+            aria-label="Cerrar sesion"
+            title="Cerrar sesion"
+          >
+            <i class="bi bi-box-arrow-right"></i>
+            <span>Cerrar sesion</span>
+          </button>
+        </ng-container>
+
+        <ng-template #loggedOutDesktopAction>
+          <button
+            class="navbar__action navbar__action--primary"
+            type="button"
+            (click)="openLoginModal()"
+            aria-label="Abrir acceso"
+          >
+            <i class="bi bi-shield-lock"></i>
+            <span>Acceso IA</span>
+          </button>
+        </ng-template>
       </div>
     </div>
-    <ul class="nav-links" [class.open]="menuOpen">
-      <li><a routerLink="/web" (click)="closeMenu()">Inicio</a></li>
-      <li><a routerLink="/productos" (click)="closeMenu()">Productos</a></li>
-      <li *ngIf="store.isLoggedIn()">
-        <button class="nav-icon-btn" type="button" (click)="handleLogout()" aria-label="Cerrar sesión" title="Cerrar sesión">
-          <i class="bi bi-box-arrow-right"></i>
-        </button>
-      </li>
-      <li *ngIf="!store.isLoggedIn()"><a class="nav-cta" (click)="openLoginModal()">Ingresar</a></li>
-    </ul>
-    <button class="hamburger" (click)="toggleMenu()" [class.active]="menuOpen">
-      <span></span><span></span><span></span>
+
+    <button
+      class="navbar__toggle"
+      type="button"
+      (click)="toggleMenu()"
+      [class.active]="menuOpen"
+      [attr.aria-expanded]="menuOpen"
+      aria-controls="mobile-menu"
+      aria-label="Abrir navegacion"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
     </button>
   </div>
+
+  <div
+    id="mobile-menu"
+    class="navbar__mobile"
+    [class.open]="menuOpen"
+    [attr.aria-hidden]="!menuOpen"
+  >
+    <div class="navbar__mobile-header">
+      <div>
+        <span class="navbar__mobile-eyebrow">Menu neural</span>
+        <h2>AETHON INNOVATION</h2>
+      </div>
+      <button
+        class="navbar__mobile-close"
+        type="button"
+        (click)="closeMenu()"
+        aria-label="Cerrar menu"
+      >
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+
+    <div class="navbar__mobile-body">
+      <a class="navbar__mobile-link" routerLink="/web" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeMenu()">
+        <span>Inicio</span>
+        <i class="bi bi-arrow-up-right"></i>
+      </a>
+
+      <a class="navbar__mobile-link" routerLink="/productos" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeMenu()">
+        <span>Productos</span>
+        <i class="bi bi-arrow-up-right"></i>
+      </a>
+
+      <div class="navbar__mobile-panel">
+        <div class="navbar__mobile-panel-copy">
+          <span>Startup premium</span>
+          <strong>Innovacion, IA y desarrollo moderno.</strong>
+        </div>
+
+        <ng-container *ngIf="store.isLoggedIn(); else loggedOutMobileAction">
+          <button
+            class="navbar__action navbar__action--ghost navbar__action--full"
+            type="button"
+            (click)="handleLogout()"
+          >
+            <i class="bi bi-box-arrow-right"></i>
+            <span>Cerrar sesion</span>
+          </button>
+        </ng-container>
+
+        <ng-template #loggedOutMobileAction>
+          <button
+            class="navbar__action navbar__action--primary navbar__action--full"
+            type="button"
+            (click)="openLoginModal()"
+          >
+            <i class="bi bi-shield-lock"></i>
+            <span>Acceso IA</span>
+          </button>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+
+  <button
+    class="navbar__backdrop"
+    type="button"
+    [class.visible]="menuOpen"
+    (click)="closeMenu()"
+    aria-label="Cerrar menu"
+    tabindex="-1"
+  ></button>
 </nav>
 
-<!-- Login Modal -->
-@if (showLoginModal) {
-  <app-login-modal 
-    (close)="closeLoginModal()" 
-    (login)="handleLogin($event)"
-  ></app-login-modal>
-}
+<app-login-modal
+  *ngIf="showLoginModal"
+  (close)="closeLoginModal()"
+  (login)="handleLogin($event)"
+></app-login-modal>
