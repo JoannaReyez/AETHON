@@ -1,59 +1,123 @@
 <footer class="footer">
-  <div class="footer-top">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <div class="footer-logo">
-            <i class="bi bi-grid-fill"></i>
-            <span>Tu Negocio</span>
-          </div>
-          <p>Tu Slogan Aquí — Transformando vidas una experiencia a la vez.</p>
-          <div class="social-links">
-            <a *ngFor="let social of socialLinks" 
-               [href]="social.url" 
-               class="social-link" 
-               [title]="social.name">
-              <i class="bi" [class]="social.icon"></i>
-            </a>
-          </div>
-        </div>
-        
-        <div class="footer-col">
-          <h4>Navegación</h4>
-          <ul>
-            <li *ngFor="let link of navigationLinks">
-              <a [href]="link.url">{{ link.label }}</a>
-            </li>
-          </ul>
-        </div>
-        
-        <div class="footer-col">
-          <h4>Horarios</h4>
-          <ul class="schedule">
-            <li *ngFor="let item of schedule">
-              <span>{{ item.day }}</span>
-              <span>{{ item.time }}</span>
-            </li>
-          </ul>
-        </div>
-        
-        <div class="footer-col">
-          <h4>Contacto</h4>
-          <ul class="contact-list">
-            <li *ngFor="let contact of contactInfo">
-              <i class="bi" [class]="contact.icon"></i>
-              <span>{{ contact.text }}</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
+  <div class="footer__ambient" aria-hidden="true">
+    <span class="footer__grid"></span>
+    <span class="footer__orb footer__orb--one"></span>
+    <span class="footer__orb footer__orb--two"></span>
+    <span class="footer__orb footer__orb--three"></span>
+    <span class="footer__orb footer__orb--four"></span>
+    <span class="footer__orb footer__orb--five"></span>
+    <span class="footer__orb footer__orb--six"></span>
+    <span class="footer__beam footer__beam--one"></span>
+    <span class="footer__beam footer__beam--two"></span>
+    <span class="footer__beam footer__beam--three"></span>
+    <span class="footer__beam footer__beam--four"></span>
+    <span class="footer__beam footer__beam--five"></span>
+    <span class="footer__beam footer__beam--six"></span>
+    <span class="footer__beam footer__beam--seven"></span>
+    <span class="footer__beam footer__beam--eight"></span>
+    <span class="footer__beam footer__beam--nine"></span>
+    <span class="footer__ring footer__ring--one"></span>
+    <span class="footer__ring footer__ring--two"></span>
+    <span class="footer__ring footer__ring--three"></span>
+    <span class="footer__ring footer__ring--four"></span>
+    <span class="footer__ring footer__ring--five"></span>
+    <span class="footer__ring footer__ring--six"></span>
+    <span class="footer__node footer__node--one"></span>
+    <span class="footer__node footer__node--two"></span>
+    <span class="footer__node footer__node--three"></span>
+    <span class="footer__node footer__node--four"></span>
+    <span class="footer__node footer__node--five"></span>
+    <span class="footer__node footer__node--six"></span>
+    <span class="footer__node footer__node--seven"></span>
+    <span class="footer__node footer__node--eight"></span>
+    <span class="footer__node footer__node--nine"></span>
+    <span class="footer__node footer__node--ten"></span>
+    <span class="footer__line footer__line--one"></span>
+    <span class="footer__line footer__line--two"></span>
+    <span class="footer__line footer__line--three"></span>
+    <span class="footer__line footer__line--four"></span>
+    <span class="footer__line footer__line--five"></span>
+    <span class="footer__line footer__line--six"></span>
+    <span class="footer__line footer__line--seven"></span>
+    <span class="footer__line footer__line--eight"></span>
+    <span class="footer__line footer__line--nine"></span>
+    <span class="footer__line footer__line--ten"></span>
+    <span class="footer__particle footer__particle--one"></span>
+    <span class="footer__particle footer__particle--two"></span>
+    <span class="footer__particle footer__particle--three"></span>
+    <span class="footer__particle footer__particle--four"></span>
+    <span class="footer__particle footer__particle--five"></span>
+    <span class="footer__particle footer__particle--six"></span>
+    <span class="footer__particle footer__particle--seven"></span>
+    <span class="footer__particle footer__particle--eight"></span>
+    <span class="footer__particle footer__particle--nine"></span>
+    <span class="footer__particle footer__particle--ten"></span>
+    <span class="footer__particle footer__particle--eleven"></span>
+    <span class="footer__particle footer__particle--twelve"></span>
   </div>
-  
-  <div class="footer-bottom">
-    <div class="container">
-      <p>© {{ currentYear }} <strong>Tu Negocio</strong>. Todos los derechos reservados.</p>
-      <p class="footer-dev">Diseñado por <strong>AETHON INNOVATION</strong> · <a href="#">Aviso de Privacidad</a></p>
+
+  <div class="footer__inner">
+    <div class="footer__content">
+      <section class="footer__panel footer__panel--brand">
+        <span class="footer__corner footer__corner--tl"></span>
+        <span class="footer__corner footer__corner--br"></span>
+        <div class="footer__chip footer__chip--panel">
+          <i class="bi bi-grid-3x3-gap-fill"></i>
+          <span>Conversemos</span>
+        </div>
+
+        <h2 class="footer__title">
+          <span>AETHON</span>
+          <span>INNOVATION</span>
+        </h2>
+
+        <p class="footer__lead footer__lead--panel">
+          Creamos experiencias digitales modernas, limpias y memorables para marcas que quieren destacar.
+        </p>
+      </section>
+
+      <section class="footer__panel footer__panel--contact">
+        <span class="footer__corner footer__corner--tl"></span>
+        <span class="footer__corner footer__corner--br"></span>
+        <h3>Contacto directo</h3>
+
+        <div class="footer__cards">
+          <a class="footer__card" href="mailto:aethoninnovation@gmail.com">
+            <span class="footer__card-icon">
+              <i class="bi bi-envelope-at"></i>
+            </span>
+            <span class="footer__card-copy">
+              <strong>Correo directo</strong>
+              <small>aethoninnovation@gmail.com</small>
+            </span>
+            <i class="bi bi-arrow-up-right footer__card-arrow"></i>
+          </a>
+
+          <a
+            class="footer__card"
+            href="https://www.facebook.com/share/1P3eK5e7Fy/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span class="footer__card-icon">
+              <i class="bi bi-facebook"></i>
+            </span>
+            <span class="footer__card-copy">
+              <strong>Facebook</strong>
+              <small>AETHON Innovation</small>
+            </span>
+            <i class="bi bi-arrow-up-right footer__card-arrow"></i>
+          </a>
+        </div>
+      </section>
+    </div>
+
+    <div class="footer__bottom">
+      <p>&copy; {{ currentYear }} AETHON INNOVATION. Todos los derechos reservados.</p>
+      <p>
+        <span>Diseno y desarrollo</span>
+        <strong>AETHON INNOVATION</strong>
+      </p>
     </div>
   </div>
 </footer>
