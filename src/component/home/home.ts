@@ -19,48 +19,41 @@ export class Home implements OnInit, AfterViewInit, OnDestroy {
 
   services = [
     {
-      icon: 'bi-stars',
-      name: 'Servicio Premium',
-      desc: 'Describe aquí tu servicio principal. Qué incluye, duración y beneficios para el cliente.',
-      price: 'Desde $299',
-      badge: 'Popular'
-    },
-    {
-      icon: 'bi-lightning-charge-fill',
-      name: 'Producto Destacado',
-      desc: 'Agrega aquí la descripción de tu producto o servicio más vendido con todos los detalles.',
-      price: 'Desde $199',
-      badge: 'Nuevo'
-    },
-    {
-      icon: 'bi-gift-fill',
-      name: 'Promoción Especial',
-      desc: 'Crea una oferta irresistible. Describe el valor y el ahorro que obtiene tu cliente.',
-      price: 'Oferta: $149',
-      badge: '20% OFF'
-    },
-    {
-      icon: 'bi-diamond-fill',
-      name: 'Paquete VIP',
-      desc: 'Para clientes que quieren lo mejor. Incluye beneficios exclusivos y atención prioritaria.',
-      price: 'Desde $499',
+      icon: 'bi-window-sidebar',
+      name: 'Página Sencilla',
+      subtitle: '/ Negocio Pequeño',
+      desc: 'Ideal para negocios pequeños que necesitan presencia en línea.',
+      price: '$300 - $600',
+      initialPrice: '$2,000 - $4,000',
+      examples: 'Barberías, cafeterías, tiendas pequeñas, estéticas y papelerías.',
+      includes: ['Inicio', 'Servicios', 'Contacto', 'WhatsApp', 'Galería de imágenes', 'Diseño personalizado', 'Adaptación a celular y computadora', 'Formulario de contacto', 'Integración con redes sociales', 'Mapa de ubicación', 'Enlace directo a WhatsApp'],
       badge: null
     },
     {
-      icon: 'bi-calendar2-check-fill',
-      name: 'Reserva tu Cita',
-      desc: 'Agenda fácilmente tu visita. Disponibilidad inmediata y confirmación al instante.',
-      price: 'Gratis',
+      icon: 'bi-graph-up-arrow',
+      name: 'Página Más Profesional',
+      subtitle: '',
+      desc: 'Para empresas que buscan más secciones y un diseño profesional.',
+      price: '$600 - $1,200',
+      initialPrice: '$5,000 - $10,000',
+      examples: 'Diseño más elaborado, varias secciones, formularios avanzados, panel administrativo y correos empresariales.',
+      includes: ['Todo lo del paquete anterior', 'Diseño más elaborado y profesional', 'Secciones ilimitadas', 'Formularios avanzados', 'Panel administrativo para editar contenido', 'Catálogo de productos o servicios', 'Animaciones y efectos visuales', 'Correos empresariales', 'Integración con herramientas externas', 'Soporte prioritario'],
       badge: null
     },
     {
-      icon: 'bi-patch-check-fill',
-      name: 'Tu Servicio Aquí',
-      desc: 'Este espacio es para tu 6to servicio o producto. Personaliza el icono, nombre y precio.',
-      price: 'A consultar',
+      icon: 'bi-cart3',
+      name: 'Tienda en Línea',
+      subtitle: '/ Sistema',
+      desc: 'Soluciones completas para vender en línea y gestionar tu negocio.',
+      price: '$1,200 - $3,000',
+      initialPrice: '$12,000 - $25,000',
+      examples: 'Ecommerce, punto de venta, reservaciones, inventario y sistema personalizado.',
+      includes: ['Tienda en línea completa', 'Carrito de compras', 'Panel administrativo avanzado', 'Gestión de productos e inventario', 'Punto de venta (POS)', 'Sistema de reservaciones', 'Reportes y estadísticas', 'Sistema personalizado según necesidades', 'Soporte y mantenimiento especializado'],
       badge: null
     }
   ];
+
+  selectedService: any = null;
 
   testimonials = [
     {
@@ -141,6 +134,19 @@ export class Home implements OnInit, AfterViewInit, OnDestroy {
   onWindowScroll(): void {
     this.isScrolled = window.scrollY > 80;
     this.checkScrollAnimations();
+  }
+
+  @HostListener('document:keydown.escape', [])
+  onEscapeKey(): void {
+    this.closeServiceModal();
+  }
+
+  openServiceModal(service: any): void {
+    this.selectedService = service;
+  }
+
+  closeServiceModal(): void {
+    this.selectedService = null;
   }
 
   private setupScrollAnimation(): void {

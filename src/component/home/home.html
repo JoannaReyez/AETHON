@@ -78,7 +78,7 @@
       </p>
 
       <div class="hero-actions">
-        <a href="https://wa.me/521234567890" target="_blank" class="hero-btn hero-btn--primary">
+        <a href="https://wa.me/522221936878" target="_blank" class="hero-btn hero-btn--primary">
           <i class="bi bi-whatsapp"></i>
           <span>Iniciar proyecto premium</span>
         </a>
@@ -148,43 +148,72 @@
 <section class="about section" id="about">
   <div class="container">
     <div class="about-grid">
+      <div class="about-text">
+        <div class="section-tag"><i class="bi bi-stars"></i> AETHON INNOVATION</div>
+        <h2>Tecnología que transforma <span class="highlight">ideas.</span></h2>
+        <p class="about-intro">Desarrollamos soluciones digitales inteligentes que conectan, automatizan y hacen crecer negocios.</p>
+        <p class="about-body">Combinamos estrategia, diseño visual, desarrollo web e inteligencia artificial para construir experiencias modernas, veloces y listas para escalar.</p>
+        <div class="about-actions">
+          <a href="#services" class="about-btn about-btn--primary">
+            <span>Conoce nuestros servicios</span>
+            <i class="bi bi-arrow-right"></i>
+          </a>
+          <a href="https://wa.me/522221936878" target="_blank" class="about-btn about-btn--secondary">
+            <span>Habla con nosotros</span>
+            <i class="bi bi-chat-dots"></i>
+          </a>
+        </div>
+      </div>
+
       <div class="about-image-wrap">
         <div class="about-img-placeholder">
-          <i class="bi bi-camera"></i>
-          <span>[ Tu Foto de Negocio Aquí ]</span>
+          <img src="/aethonimg.png" alt="Setup tecnológico AETHON Innovation" />
         </div>
         <div class="about-img-accent"></div>
         <div class="about-badge-experience">
-          <strong>10+</strong>
-          <span>Años sirviendo</span>
+          <i class="bi bi-cpu"></i>
+          <strong>IA & Automatización</strong>
+          <span>Soluciones inteligentes que optimizan procesos y resultados.</span>
+        </div>
+        <div class="about-float-card about-float-card--web">
+          <i class="bi bi-code-slash"></i>
+          <strong>Desarrollo Web</strong>
+          <span>Sitios modernos, rápidos y adaptados a tu marca.</span>
+        </div>
+        <div class="about-float-card about-float-card--systems">
+          <i class="bi bi-cart3"></i>
+          <strong>Sistemas & POS</strong>
+          <span>Control total de tu negocio en tiempo real.</span>
         </div>
       </div>
-      <div class="about-text">
-        <div class="section-tag"><i class="bi bi-info-circle"></i> Sobre Nosotros</div>
-        <h2>¿Quiénes somos y <span class="highlight">qué nos hace únicos?</span></h2>
-        <p class="about-intro">Somos un negocio apasionado por lo que hacemos. Describe aquí tu historia, misión y lo que te diferencia de la competencia.</p>
-        <p class="about-body">Aquí puedes hablar de tus valores, tu equipo, tu trayectoria o por qué los clientes eligen tu negocio. Este texto es completamente editable para adaptarse a tu marca.</p>
-        <div class="about-features">
-          <div class="feature-item">
-            <div class="feature-icon"><i class="bi bi-check2-circle"></i></div>
-            <div>
-              <strong>Calidad garantizada</strong>
-              <p>Descripción breve de tu promesa de calidad.</p>
-            </div>
+
+      <div class="about-features">
+        <div class="feature-item">
+          <div class="feature-icon"><i class="bi bi-rocket-takeoff"></i></div>
+          <div>
+            <strong>Innovación constante</strong>
+            <p>Siempre un paso adelante.</p>
           </div>
-          <div class="feature-item">
-            <div class="feature-icon"><i class="bi bi-heart-fill"></i></div>
-            <div>
-              <strong>Atención personalizada</strong>
-              <p>Cada cliente merece lo mejor de nosotros.</p>
-            </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon"><i class="bi bi-shield-check"></i></div>
+          <div>
+            <strong>Tecnología segura</strong>
+            <p>Protegemos lo que importa.</p>
           </div>
-          <div class="feature-item">
-            <div class="feature-icon"><i class="bi bi-award-fill"></i></div>
-            <div>
-              <strong>Experiencia comprobada</strong>
-              <p>Años de trayectoria respaldan nuestro trabajo.</p>
-            </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon"><i class="bi bi-lightning-charge"></i></div>
+          <div>
+            <strong>Rendimiento excepcional</strong>
+            <p>Velocidad que impulsa tu éxito.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon"><i class="bi bi-people"></i></div>
+          <div>
+            <strong>Enfoque en ti</strong>
+            <p>Soluciones hechas a tu medida.</p>
           </div>
         </div>
       </div>
@@ -198,32 +227,113 @@
     <div class="section-header">
       <div class="section-tag"><i class="bi bi-grid"></i> Lo que ofrecemos</div>
       <h2>Nuestros <span class="highlight">Servicios</span></h2>
-      <p>Agrega aquí tus servicios, productos o promociones principales. Cada tarjeta es completamente personalizable.</p>
+      <p>Creamos páginas web modernas y soluciones digitales personalizadas que ayudan a tu negocio a destacar, conectar con más clientes y transmitir una imagen profesional e innovadora.</p>
     </div>
     <div class="services-grid">
-      <div class="service-card featured" *ngFor="let service of services; let i = index" [style.animation-delay]="i * 100 + 'ms'">
+      <div class="service-card" [class.service-card--featured]="i === 1" *ngFor="let service of services; let i = index" [style.animation-delay]="i * 100 + 'ms'">
         <div class="service-icon-wrap">
           <i class="bi" [class]="service.icon"></i>
         </div>
         <div class="service-badge" *ngIf="service.badge">{{ service.badge }}</div>
-        <h3>{{ service.name }}</h3>
+        <h3>
+          {{ service.name }}
+          <span *ngIf="service.subtitle">{{ service.subtitle }}</span>
+        </h3>
         <p>{{ service.desc }}</p>
         <div class="service-price">{{ service.price }}</div>
-        <a href="#contact" class="service-btn">
+        <button type="button" class="service-btn" (click)="openServiceModal(service)">
           Más info <i class="bi bi-arrow-right"></i>
-        </a>
+        </button>
       </div>
     </div>
     <div class="promo-banner">
       <div class="promo-left">
         <i class="bi bi-lightning-charge-fill"></i>
         <div>
-          <strong>[ Tu Promoción Especial Aquí ]</strong>
-          <span>Agrega aquí tus descuentos o paquetes especiales del mes</span>
+          <strong>¿Listo para comenzar?</strong>
+          <span>Elige el plan que mejor se adapte a tu negocio y lleva tu presencia en línea al siguiente nivel.</span>
         </div>
       </div>
-      <a href="https://wa.me/521234567890" target="_blank" class="promo-btn">
-        <i class="bi bi-whatsapp"></i> Aprovechar Oferta
+      <a href="https://wa.me/522221936878" target="_blank" class="promo-btn">
+        Contáctanos <i class="bi bi-whatsapp"></i>
+      </a>
+    </div>
+    <div class="services-trust">
+      <div class="services-trust__item">
+        <i class="bi bi-shield-check"></i>
+        <span>Sitios seguros<br>y confiables</span>
+      </div>
+      <div class="services-trust__item">
+        <i class="bi bi-clock"></i>
+        <span>Entregas rápidas<br>y puntuales</span>
+      </div>
+      <div class="services-trust__item">
+        <i class="bi bi-headset"></i>
+        <span>Soporte continuo<br>y personalizado</span>
+      </div>
+      <div class="services-trust__item">
+        <i class="bi bi-award"></i>
+        <span>Calidad garantizada<br>en cada proyecto</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="service-modal" *ngIf="selectedService" (click)="closeServiceModal()">
+    <div class="service-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="serviceModalTitle" (click)="$event.stopPropagation()">
+      <button type="button" class="service-modal__close" aria-label="Cerrar" (click)="closeServiceModal()">
+        <i class="bi bi-x-lg"></i>
+      </button>
+
+      <div class="service-modal__header">
+        <div class="service-modal__icon">
+          <i class="bi" [class]="selectedService.icon"></i>
+        </div>
+        <div>
+          <span class="service-modal__eyebrow">Cotización del servicio</span>
+          <h3 id="serviceModalTitle">
+            {{ selectedService.name }}
+            <span *ngIf="selectedService.subtitle">{{ selectedService.subtitle }}</span>
+          </h3>
+          <p>{{ selectedService.examples }}</p>
+        </div>
+      </div>
+
+      <div class="service-modal__prices">
+        <div>
+          <span>Pago inicial</span>
+          <strong>{{ selectedService.initialPrice }}</strong>
+          <small>MXN</small>
+        </div>
+        <div>
+          <span>Pago mensual</span>
+          <strong>{{ selectedService.price }}</strong>
+          <small>MXN</small>
+        </div>
+      </div>
+
+      <div class="service-modal__includes">
+        <h4>Incluye</h4>
+        <ul>
+          <li *ngFor="let item of selectedService.includes">
+            <i class="bi bi-check2"></i>
+            <span>{{ item }}</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="service-modal__notes">
+        <div>
+          <i class="bi bi-plus-circle"></i>
+          <p><strong>Precios adicionales:</strong> van desde $300 a $1,000 MXN, según la funcionalidad y complejidad requerida.</p>
+        </div>
+        <div>
+          <i class="bi bi-shield-check"></i>
+          <p><strong>Tu primer mes no se paga, es de garantía.</strong> A partir del segundo mes se cobra según el plan elegido.</p>
+        </div>
+      </div>
+
+      <a href="https://wa.me/522221936878" target="_blank" class="service-modal__cta">
+        Solicitar cotización <i class="bi bi-whatsapp"></i>
       </a>
     </div>
   </div>
@@ -280,34 +390,6 @@
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
-<section class="testimonials section" id="testimonials">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-tag"><i class="bi bi-chat-quote"></i> Lo que dicen</div>
-      <h2>Testimonios <span class="highlight">Reales</span></h2>
-      <p>La opinión de tus clientes es el mejor argumento de venta. Aquí van sus comentarios.</p>
-    </div>
-    <div class="testimonials-grid">
-      <div class="testimonial-card" *ngFor="let t of testimonials">
-        <div class="testimonial-quote"><i class="bi bi-quote"></i></div>
-        <p class="testimonial-text">"{{ t.text }}"</p>
-        <div class="testimonial-stars">
-          <i class="bi bi-star-fill" *ngFor="let s of [1,2,3,4,5]"></i>
-        </div>
-        <div class="testimonial-author">
-          <div class="author-avatar">
-            <i class="bi bi-person-fill"></i>
-          </div>
-          <div>
-            <strong>{{ t.name }}</strong>
-            <span>{{ t.role }}</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- CTA -->
 <section class="cta-section" id="contact">
@@ -321,11 +403,11 @@
       <h2>¿Listo para llevar tu negocio<br><span>al siguiente nivel?</span></h2>
       <p>No esperes más. Contáctanos hoy y descubre cómo podemos ayudarte a crecer. Tu éxito es nuestra misión.</p>
       <div class="cta-actions">
-        <a href="https://wa.me/521234567890" target="_blank" class="btn-cta-main">
+        <a href="https://wa.me/522221936878" target="_blank" class="btn-cta-main">
           <i class="bi bi-whatsapp"></i>
           Contáctanos Ahora
         </a>
-        <a href="tel:+521234567890" class="btn-cta-secondary">
+        <a href="tel:+522221936878" class="btn-cta-secondary">
           <i class="bi bi-telephone-fill"></i>
           Llamar Ahora
         </a>
@@ -342,7 +424,7 @@
 <app-footer></app-footer>
 
 <!-- WhatsApp Floating Button -->
-<a href="https://wa.me/521234567890" target="_blank" class="whatsapp-float" [class.show]="isScrolled">
+<a href="https://wa.me/522221936878" target="_blank" class="whatsapp-float" [class.show]="isScrolled">
   <i class="bi bi-whatsapp"></i>
   <span class="wsp-tooltip">¡Escríbenos!</span>
 </a>

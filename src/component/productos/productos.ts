@@ -305,6 +305,6 @@ export class Productos implements OnInit, OnDestroy {
     const items = this.cartItems.map(i => `• ${i.product.name} x${i.quantity}`).join('%0A');
     const total = `Total: $${this.cartTotal}`;
     const msg = `Hola! Me interesan estos productos:%0A${items}%0A${total}`;
-    window.open(`https://wa.me/521234567890?text=${msg}`, '_blank');
+    window.open(`https://wa.me/522221936878?text=${msg}`, '_blank');
   }
 }
