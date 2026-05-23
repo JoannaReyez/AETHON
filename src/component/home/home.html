@@ -3,68 +3,107 @@
 
 <!-- HERO -->
 <section class="hero" id="hero">
-  <div class="hero-bg-shapes">
-    <div class="shape shape-1"></div>
-    <div class="shape shape-2"></div>
-    <div class="shape shape-3"></div>
+  <div class="hero__ambient" aria-hidden="true">
+    <div class="hero__grid"></div>
+    <div class="hero__orb hero__orb--one"></div>
+    <div class="hero__orb hero__orb--two"></div>
+    <div class="hero__orb hero__orb--three"></div>
+    <div class="hero__ring hero__ring--one"></div>
+    <div class="hero__ring hero__ring--two"></div>
+    <div class="hero__beam hero__beam--one"></div>
+    <div class="hero__beam hero__beam--two"></div>
+    <div class="hero__beam hero__beam--three"></div>
+    <span class="hero__particle hero__particle--one"></span>
+    <span class="hero__particle hero__particle--two"></span>
+    <span class="hero__particle hero__particle--three"></span>
+    <span class="hero__particle hero__particle--four"></span>
+    <span class="hero__particle hero__particle--five"></span>
+    <span class="hero__particle hero__particle--six"></span>
   </div>
+
   <div class="hero-content">
     <div class="hero-text" [class.visible]="heroVisible">
-      <div class="hero-badge">
-        <i class="bi bi-stars"></i>
-        <span>Presencia Digital Profesional</span>
+      <div class="hero-brand-chip">
+        <span class="hero-brand-chip__dot"></span>
+        <span>AI Innovation Studio</span>
       </div>
+
       <h1 class="hero-title">
-        <span class="gradient-text">Tu Negocio</span>
-        <br>en el siguiente nivel
+        <span class="hero-title__line hero-title__line--brand">AETHON</span>
+        <span class="hero-title__line hero-title__line--brand hero-title__line--sub">INNOVATION</span>
       </h1>
-      <p class="hero-slogan">✦ Tu Slogan Aquí ✦</p>
-      <p class="hero-desc">Describe aquí tu negocio en pocas palabras. Conecta con más clientes, genera confianza y haz crecer tu marca con presencia profesional en internet.</p>
+
+      <p class="hero-slogan hero-slogan--main">
+        Donde las ideas se convierten en innovacion viva.
+      </p>
+
+      <p class="hero-desc">
+        Diseñando experiencias digitales futuristas impulsadas por inteligencia artificial.
+      </p>
+
       <div class="hero-actions">
-        <a href="https://wa.me/521234567890" target="_blank" class="btn-whatsapp">
+        <a href="https://wa.me/521234567890" target="_blank" class="hero-btn hero-btn--primary">
           <i class="bi bi-whatsapp"></i>
-          Escríbenos por WhatsApp
+          <span>Iniciar proyecto premium</span>
         </a>
-        <a href="#services" class="btn-outline">
-          Ver Servicios <i class="bi bi-arrow-down-right"></i>
+        <a href="#services" class="hero-btn hero-btn--secondary">
+          <span>Explorar servicios</span>
+          <i class="bi bi-arrow-down-right"></i>
         </a>
       </div>
+
       <div class="hero-stats">
-        <div class="stat"><strong>+200</strong><span>Clientes Felices</span></div>
+        <div class="stat">
+          <strong>+200</strong>
+          <span>Lanzamientos digitales</span>
+        </div>
         <div class="stat-divider"></div>
-        <div class="stat"><strong>5★</strong><span>Valoración</span></div>
+        <div class="stat">
+          <strong>5.0</strong>
+          <span>Calidad premium</span>
+        </div>
         <div class="stat-divider"></div>
-        <div class="stat"><strong>10+</strong><span>Años de Exp.</span></div>
+        <div class="stat">
+          <strong>24/7</strong>
+          <span>Mentalidad innovadora</span>
+        </div>
       </div>
     </div>
+
     <div class="hero-visual" [class.visible]="heroVisible">
-      <div class="mockup-card main-card">
-        <div class="mockup-header">
-          <div class="dots"><span></span><span></span><span></span></div>
-          <div class="mockup-url">tunegocio.com</div>
+      <div class="hero-dashboard hero-dashboard--minimal">
+        <div class="hero-dashboard__topbar">
+          <div class="hero-dashboard__status">
+            <span class="hero-dashboard__pulse"></span>
+            AETHON / CORE
+          </div>
+          <div class="hero-dashboard__mode">Premium interface</div>
         </div>
-        <div class="mockup-img-placeholder">
-          <i class="bi bi-image"></i>
-          <span>[ Tu Imagen Aquí ]</span>
-        </div>
-        <div class="mockup-body">
-          <div class="mockup-line w80"></div>
-          <div class="mockup-line w60"></div>
-          <div class="mockup-line w90"></div>
+
+        <div class="hero-dashboard__hero hero-dashboard__hero--stacked">
+          <div class="hero-dashboard__logo hero-dashboard__logo--large">
+            <img src="/logo2.png" alt="AETHON INNOVATION logo" />
+          </div>
+          <div class="hero-dashboard__content hero-dashboard__content--center">
+            <span class="hero-dashboard__eyebrow">AETHON INNOVATION</span>
+            <h2>Diseñando experiencias digitales futuristas impulsadas por IA.</h2>
+            <p>Glassmorphism, precisión visual y una identidad tecnológica de alto nivel.</p>
+          </div>
         </div>
       </div>
-      <div class="floating-badge badge-clients">
-        <i class="bi bi-people-fill"></i>
-        <div><strong>+200</strong><small>Visitas hoy</small></div>
+
+      <div class="hero-orbit hero-orbit--left">
+        <span></span><span></span><span></span>
       </div>
-      <div class="floating-badge badge-rating">
-        <i class="bi bi-star-fill"></i>
-        <div><strong>5.0</strong><small>Valoración</small></div>
+
+      <div class="hero-orbit hero-orbit--right">
+        <span></span><span></span><span></span>
       </div>
     </div>
   </div>
+
   <div class="scroll-indicator">
-    <span>Desliza</span>
+    <span>Desliza para explorar</span>
     <i class="bi bi-chevron-compact-down"></i>
   </div>
 </section>
