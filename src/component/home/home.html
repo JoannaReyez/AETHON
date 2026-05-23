@@ -231,51 +231,49 @@
 
 <!-- GALLERY -->
 <section class="gallery section" id="gallery">
+  <div class="gallery-backdrop">
+    <span class="ambient-dot dot-1"></span>
+    <span class="ambient-dot dot-2"></span>
+    <span class="ambient-line line-1"></span>
+    <span class="ambient-line line-2"></span>
+    <span class="ambient-line line-3"></span>
+  </div>
   <div class="container">
     <div class="section-header">
-      <div class="section-tag"><i class="bi bi-images"></i> Nuestro trabajo</div>
-      <h2>Galería <span class="highlight">& Showcase</span></h2>
-      <p>Muestra aquí fotos de tu negocio, productos o trabajos realizados. Las imágenes generan confianza.</p>
+      <div class="section-tag"><i class="bi bi-cpu"></i> IA Cinemática</div>
+      <h2>Galería de <span class="highlight">AETHON</span></h2>
+      <p>Explora una experiencia visual de innovación digital, tecnología de punta y narrativa cinematográfica.</p>
     </div>
     <div class="gallery-grid">
-      <div class="gallery-item tall">
-        <div class="gallery-placeholder">
-          <i class="bi bi-image"></i>
-          <span>[ Tu Foto Destacada ]</span>
+      <article *ngFor="let item of galleryItems; trackBy: trackByGallery" class="gallery-item" [ngClass]="item.variant">
+        <div class="gallery-card">
+          <ng-container *ngIf="item.type === 'video'; else imageBlock">
+            <video
+              class="gallery-media"
+              [poster]="item.poster"
+              muted
+              autoplay
+              loop
+              playsinline
+              preload="metadata"
+            >
+              <source [src]="item.src" type="video/mp4" />
+            </video>
+            <button class="play-btn" type="button" aria-label="Reproducir video">
+              <i class="bi bi-play-fill"></i>
+            </button>
+          </ng-container>
+          <ng-template #imageBlock>
+            <img class="gallery-media" [src]="item.src" [alt]="item.title" loading="lazy" />
+          </ng-template>
+          <div class="card-mask"></div>
+          <div class="card-copy compact">
+            <span class="eyebrow">{{ item.subtitle }}</span>
+            <h3>{{ item.title }}</h3>
+            <span class="item-tag">{{ item.tag }}</span>
+          </div>
         </div>
-        <div class="gallery-overlay">
-          <i class="bi bi-zoom-in"></i>
-          <span>Ver foto</span>
-        </div>
-      </div>
-      <div class="gallery-item">
-        <div class="gallery-placeholder">
-          <i class="bi bi-image"></i>
-          <span>[ Foto 2 ]</span>
-        </div>
-        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i><span>Ver foto</span></div>
-      </div>
-      <div class="gallery-item">
-        <div class="gallery-placeholder">
-          <i class="bi bi-image"></i>
-          <span>[ Foto 3 ]</span>
-        </div>
-        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i><span>Ver foto</span></div>
-      </div>
-      <div class="gallery-item wide">
-        <div class="gallery-placeholder">
-          <i class="bi bi-image"></i>
-          <span>[ Tu Menú / Catálogo Aquí ]</span>
-        </div>
-        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i><span>Ver foto</span></div>
-      </div>
-      <div class="gallery-item">
-        <div class="gallery-placeholder">
-          <i class="bi bi-image"></i>
-          <span>[ Foto 5 ]</span>
-        </div>
-        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i><span>Ver foto</span></div>
-      </div>
+      </article>
     </div>
   </div>
 </section>

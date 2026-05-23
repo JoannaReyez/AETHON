@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, HostListener, signal } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, HostListener, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router'; 
 import { Navbar } from '../navbar/navbar';
@@ -11,7 +11,7 @@ import { Footer } from '../footer/footer';
   templateUrl: './home.html',
   styleUrl: './home.scss'
 })
-export class Home implements OnInit, OnDestroy {
+export class Home implements OnInit, AfterViewInit, OnDestroy {
 
   isScrolled = false;
   menuOpen = false;
@@ -80,9 +80,59 @@ export class Home implements OnInit, OnDestroy {
     }
   ];
 
+  galleryItems = [
+    {
+      id: 1,
+      type: 'video',
+      src: 'video1.mp4',
+      poster: 'logo1.jpeg',
+      title: 'Visión de producto inteligente',
+      subtitle: 'Cinematic AI',
+      tag: 'Video',
+      variant: 'tall'
+    },
+    {
+      id: 2,
+      type: 'video',
+      src: 'video2.mp4',
+      poster: 'logo2.jpg',
+      title: 'Narrativa digital avanzada',
+      subtitle: 'Experiencia IA',
+      tag: 'Video',
+      variant: ''
+    },
+    {
+      id: 3,
+      type: 'video',
+      src: 'video3.mp4',
+      poster: 'logo2.jpg',
+      title: 'Futuro en movimiento',
+      subtitle: 'Premium Motion',
+      tag: 'Video',
+      variant: 'wide'
+    }
+  ];
+
+  trackByGallery(index: number, item: { id: number }): number {
+    return item.id;
+  }
+
   ngOnInit(): void {
     this.heroVisible = true;
     this.setupScrollAnimation();
+  }
+
+  ngAfterViewInit(): void {
+    const videos = document.querySelectorAll<HTMLVideoElement>('video.gallery-media');
+    videos.forEach(video => {
+      video.muted = true;
+      video.autoplay = true;
+      video.playsInline = true;
+      video.loop = true;
+      video.play().catch(() => {
+        // Fallback silencioso si el navegador bloquea autoplay
+      });
+    });
   }
 
   ngOnDestroy(): void {}
